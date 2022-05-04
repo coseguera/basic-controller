@@ -39,7 +39,6 @@ type DemoSpec struct {
 
 // DemoStatus is the status for a Demo resource
 type DemoStatus struct {
-	Created     bool   `json:"created"`
 	LastMessage string `json:"lastMessage"`
 }
 
