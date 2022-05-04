@@ -207,13 +207,13 @@ func (c *Controller) syncHandler(key string) error {
 	}
 
 	if !demo.Status.Created {
-		klog.V(4).Infof("demo '%s' is not marked as created yet, marking it as created.", key)
+		klog.Infof("demo '%s' is not marked as created yet, marking it as created.", key)
 		err = c.updateDemoStatus(demo, true)
 		if err != nil {
 			return err
 		}
 	} else {
-		klog.V(4).Infof("demo '%s' is already marked as created yet. Nothing else to do.", key)
+		klog.Infof("demo '%s' is already marked as created. Nothing else to do.", key)
 	}
 
 	c.recorder.Event(demo, corev1.EventTypeNormal, SuccessSynced, MessageResourceSynced)
