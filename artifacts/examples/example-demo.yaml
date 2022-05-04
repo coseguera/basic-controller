@@ -1,0 +1,6 @@
+apiVersion: basiccontroller.coseguera.io/v1alpha1
+kind: Demo
+metadata:
+  name: example-demo
+spec:
+  message: "this is a message from the spec"
