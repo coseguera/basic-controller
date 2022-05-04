@@ -206,26 +206,26 @@ func (c *Controller) syncHandler(key string) error {
 		return err
 	}
 
-	if !demo.Status.Created {
-		klog.Infof("demo '%s' is not marked as created yet, marking it as created.", key)
-		err = c.updateDemoStatus(demo, true)
+	if demo.Spec.Message != demo.Status.LastMessage {
+		klog.Infof("demo '%s' spec has message '%s' that is different from last message in status '%s'. Updating...", key, demo.Spec.Message, demo.Status.LastMessage)
+		err = c.updateDemoStatus(demo, demo.Spec.Message)
 		if err != nil {
 			return err
 		}
 	} else {
-		klog.Infof("demo '%s' is already marked as created. Nothing else to do.", key)
+		klog.Infof("demo '%s' has not changed its message '%s'. Nothing else to do.", key, demo.Spec.Message)
 	}
 
 	c.recorder.Event(demo, corev1.EventTypeNormal, SuccessSynced, MessageResourceSynced)
 	return nil
 }
 
-func (c *Controller) updateDemoStatus(demo *basicv1alpha1.Demo, created bool) error {
+func (c *Controller) updateDemoStatus(demo *basicv1alpha1.Demo, message string) error {
 	// NEVER modify objects from the store. It's a read-only, local cache.
 	// You can use DeepCopy() to make a deep copy of original object and modify this copy
 	// or create a copy manually for better performance
 	demoCopy := demo.DeepCopy()
-	demoCopy.Status.Created = created
+	demoCopy.Status.LastMessage = message
 	// If the CustomResourceSubresources feature gate is not enabled,
 	// we must use Update instead of UpdateStatus to update the Status block of the Demo resource.
 	// UpdateStatus will not allow changes to the Spec of the resource,
