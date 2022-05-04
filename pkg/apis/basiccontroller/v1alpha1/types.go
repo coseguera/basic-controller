@@ -34,13 +34,13 @@ type Demo struct {
 
 // DemoSpec is the spec for a Demo resource
 type DemoSpec struct {
-	Name    string `json:"name"`
 	Message string `json:"message"`
 }
 
 // DemoStatus is the status for a Demo resource
 type DemoStatus struct {
-	Created bool `json:"created"`
+	Created     bool   `json:"created"`
+	LastMessage string `json:"lastMessage"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
