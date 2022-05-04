@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 // +k8s:deepcopy-gen=package
-// +groupName=basiccontroller.k8s.io
+// +groupName=basiccontroller.coseguera.io
 
 // Package v1alpha1 is the v1alpha1 version of the API.
 package v1alpha1 // import "github.com/coseguera/basic-controller/pkg/apis/basiccontroller/v1alpha1"
