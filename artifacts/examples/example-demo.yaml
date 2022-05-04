@@ -3,5 +3,4 @@ kind: Demo
 metadata:
   name: example-demo
 spec:
-  name: my-example-demo
-  message: "hello from the spec"
+  message: "this is a message from the spec"

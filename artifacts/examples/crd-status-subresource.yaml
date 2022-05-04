@@ -20,15 +20,13 @@ spec:
             spec:
               type: object
               properties:
-                name:
-                  type: string
                 message:
                   type: string
             status:
               type: object
               properties:
-                created:
-                  type: boolean
+                lastMessage:
+                  type: string
       # subresources for the custom resource
       subresources:
         # enables the status subresource
